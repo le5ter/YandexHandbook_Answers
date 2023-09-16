@@ -97,3 +97,151 @@ while s != 'ФИНИШ':
     s = input()
 print(max(sorted(dict), key=lambda x: dict[x]))
 ```
+
+### K. Найдётся всё
+``` python
+num = int(input())
+
+headers = []
+for i in range(num):
+    headers.append(input())
+request = input()
+
+for header in headers:
+    if request.lower() in header.lower():
+        print(header)
+```
+
+### L. Меню питания
+``` python
+num = int(input())
+cereal = ['Манная', 'Гречневая', 'Пшённая', 'Овсяная', 'Рисовая']
+
+for i in range(num):
+    print(cereal[i % 5])
+```
+
+### M. Массовое возведение в степень
+``` python
+size = int(input())
+nums = []
+
+for i in range(size):
+    nums.append(int(input()))
+power = int(input())
+
+for num in nums:
+    print(num ** (power))
+```
+
+### N. Массовое возведение в степень 2.0
+``` python
+nums, power = input().split(), int(input())
+
+for num in nums:
+    num = int(num)
+    print(num ** power, end=' ')
+```
+
+### O. НОД 3.0
+``` python
+from math import gcd
+
+
+nums = [int(x) for x in input().split()]
+print(gcd(*nums))
+```
+
+### P. Анонс новости 2.0
+``` python
+length, size = int(input()), int(input())
+
+headers = []
+for i in range(size):
+    headers.append(input())
+
+curr_length = length
+for header in headers:
+    if curr_length - len(header) - 3 > 0:
+        print(header)
+        curr_length -= len(header)
+    else:
+        header = header[:curr_length - 3] + '...'
+        print(header)
+        break
+```
+
+### Q. А роза упала на лапу Азора 5.0
+``` python
+string = ''.join(input().lower().split())
+
+if string == string[::-1]:
+    print('YES')
+else:
+    print('NO')
+```
+
+### R. RLE
+``` python
+nums = input()
+count = 1
+for i in range(len(nums) - 1):
+    if nums[i] == nums[i + 1]:
+        count += 1
+    else:
+        print(nums[i], count)
+        count = 1
+print(nums[-1], count)
+```
+
+### S. Польский калькулятор
+``` python
+string = [x for x in input().split()]
+stack = []
+
+for x in string:
+    if x in '*+-':
+        b = stack.pop()
+        a = stack.pop()
+        stack.append(eval(f'{a} {x} {b}'))
+    else:
+        stack.append(x)
+print(*stack)
+```
+
+### T. Польский калькулятор — 2
+``` python
+import math
+
+
+string = [x for x in input().split()]
+stack = []
+
+for x in string:
+    if x in '*+-/':
+        b = stack.pop()
+        a = stack.pop()
+        if x == '/':
+            x = '//'
+        stack.append(eval(f'{a} {x} {b}'))
+    elif x in '~!#':
+        if x == '~':
+            stack.append(f'-{stack.pop()}')
+        if x == '!':
+            num = stack.pop()
+            stack.append(str(math.factorial(int(num))))
+        if x == '#':
+            stack.append((a := stack.pop()))
+            stack.append(a)
+    elif x == '@':
+        a = stack.pop()
+        b = stack.pop()
+        c = stack.pop()
+        stack.append(b)
+        stack.append(a)
+        stack.append(c)
+    else:
+        stack.append(x)
+
+print(*stack)
+```
