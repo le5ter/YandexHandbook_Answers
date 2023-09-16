@@ -147,7 +147,6 @@ for num in nums:
 ``` python
 from math import gcd
 
-
 nums = [int(x) for x in input().split()]
 print(gcd(*nums))
 ```
@@ -212,7 +211,6 @@ print(*stack)
 ### T. Польский калькулятор — 2
 ``` python
 import math
-
 
 string = [x for x in input().split()]
 stack = []
